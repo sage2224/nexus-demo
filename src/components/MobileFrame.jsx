@@ -670,7 +670,7 @@ const MobileFrame = ({ activeTab }) => {
               "4. Chào mừng",
               "5. Home: Chưa xác thực",
               "6. eKYC",
-              "7. Home: Đã xác thực",
+              "7. Home: chưa liên kết bank",
               "8. Home: Đã nạp tiền",
               "9. Home: Đang đầu tư"
             ].map((stateName, idx) => (
