@@ -23,6 +23,7 @@ const MobileFrame = ({ activeTab }) => {
   const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0);
   const [demoHomeState, setDemoHomeState] = useState(0); // 0: Unverified, 1: Verified, 2: Funded, 3: Invested
   const [showPasskeyPopup, setShowPasskeyPopup] = useState(false);
+  const [showPowerDetail, setShowPowerDetail] = useState(false);
 
   const galleryApps = {
     revolut: {
@@ -49,6 +50,26 @@ const MobileFrame = ({ activeTab }) => {
         {
           name: 'Revolut iOS Moving money',
           images: Array.from({ length: 7 }, (_, i) => `/images/revolut_moving/Revolut iOS Moving money ${i}.png`)
+        },
+        {
+          name: 'Revolut iOS Adding money (Invest)',
+          images: Array.from({ length: 5 }, (_, i) => `/images/revolut_invest/Revolut iOS Adding money (Invest) ${i}.png`)
+        },
+        {
+          name: 'Revolut iOS Robo-advisor',
+          images: Array.from({ length: 4 }, (_, i) => `/images/revolut_robo/Revolut iOS Robo-advisor ${i}.png`)
+        },
+        {
+          name: 'Revolut iOS Learning Ethena',
+          images: Array.from({ length: 12 }, (_, i) => `/images/revolut_ethena/Revolut iOS Learning Ethena ${i}.png`)
+        },
+        {
+          name: 'Revolut iOS Lifestyle',
+          images: Array.from({ length: 4 }, (_, i) => `/images/revolut_lifestyle/Revolut iOS Lifestyle ${i}.png`)
+        },
+        {
+          name: 'Revolut iOS Referring friends',
+          images: Array.from({ length: 6 }, (_, i) => `/images/revolut_friends/Revolut iOS Referring friends ${i}.png`)
         }
       ]
     },
@@ -72,6 +93,14 @@ const MobileFrame = ({ activeTab }) => {
         {
           name: 'Fuse iOS Investment detail',
           images: Array.from({ length: 3 }, (_, i) => `/images/fuse_investment/Fuse iOS Investment detail ${i}.png`)
+        },
+        {
+          name: 'Fuse iOS Withdrawing a coin',
+          images: Array.from({ length: 5 }, (_, i) => `/images/fuse_withdrawing/Fuse iOS Withdrawing a coin ${i}.png`)
+        },
+        {
+          name: 'Fuse iOS Editing a wallet',
+          images: Array.from({ length: 5 }, (_, i) => `/images/fuse_editing/Fuse iOS Editing a wallet ${i}.png`)
         }
       ]
     },
@@ -95,6 +124,52 @@ const MobileFrame = ({ activeTab }) => {
         {
           name: 'Wise iOS Ordering a digital card',
           images: Array.from({ length: 13 }, (_, i) => `/images/wise_card/Wise iOS Ordering a digital card ${i}.png`)
+        }
+      ]
+    },
+    neo: {
+      id: 'neo',
+      title: 'Mẫu 4: Neo Financial',
+      description: 'Illustration-led design, mang phong cách sáng tạo.',
+      sections: [
+        {
+          name: 'Neo Financial iOS Onboarding',
+          images: Array.from({ length: 22 }, (_, i) => `/images/neo_onboarding/Neo Financial iOS Onboarding ${i}.png`)
+        },
+        {
+          name: 'Neo Financial iOS Neo Credit walkthrough',
+          images: Array.from({ length: 5 }, (_, i) => `/images/neo_walkthrough/Neo Financial iOS Neo Credit walkthrough ${i}.png`)
+        },
+        {
+          name: 'Neo Financial iOS Credit',
+          images: Array.from({ length: 3 }, (_, i) => `/images/neo_credit/Neo Financial iOS Credit ${i}.png`)
+        },
+        {
+          name: 'Neo Financial iOS Bundle detail',
+          images: Array.from({ length: 3 }, (_, i) => `/images/neo_bundle/Neo Financial iOS Bundle detail ${i}.png`)
+        }
+      ]
+    },
+    kraken: {
+      id: 'kraken',
+      title: 'Mẫu 5: Kraken',
+      description: 'Màu sắc trẻ trung, trải nghiệm số hiện đại.',
+      sections: [
+        {
+          name: 'Kraken iOS Onboarding',
+          images: Array.from({ length: 16 }, (_, i) => `/images/kraken_onboarding/Kraken iOS Onboarding ${i}.png`)
+        },
+        {
+          name: 'Kraken iOS Home',
+          images: Array.from({ length: 6 }, (_, i) => `/images/kraken_home/Kraken iOS Home ${i}.png`)
+        },
+        {
+          name: 'Kraken iOS Setting target price',
+          images: Array.from({ length: 6 }, (_, i) => `/images/kraken_target/Kraken iOS Setting target price ${i}.png`)
+        },
+        {
+          name: 'Kraken iOS Explore',
+          images: Array.from({ length: 5 }, (_, i) => `/images/kraken_explore/Kraken iOS Explore ${i}.png`)
         }
       ]
     }
@@ -126,6 +201,23 @@ const MobileFrame = ({ activeTab }) => {
     }
   }, [demoHomeState, activeTab]);
 
+
+
+  const InvestingChart = () => (
+    <div style={{ height: '80px', width: '100%', margin: '0 0 24px', overflow: 'visible' }}>
+      <svg width="100%" height="100%" viewBox="0 0 100 60" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
+        <polyline
+          fill="none"
+          stroke="#16a34a"
+          strokeWidth="2.5"
+          points="0,50 10,48 20,52 30,40 40,42 50,30 60,35 70,20 80,25 90,10 100,15"
+          className="chart-line-draw"
+          style={{ strokeLinecap: 'round', strokeLinejoin: 'round' }}
+        />
+      </svg>
+    </div>
+  );
+
   const renderContent = () => {
     switch (activeTab) {
       case 'time-to-value':
@@ -138,7 +230,7 @@ const MobileFrame = ({ activeTab }) => {
             { type: 'welcome' },
             {
               type: 'home',
-              statusStrip: "Xác thực danh tính để bắt đầu đầu tư ngay · ~2 phút",
+              statusStrip: "Xác thực danh tính để bắt đầu đầu tư ngay",
               heroEyebrow: "NẾU ĐẦU TƯ 5 TRIỆU VÀO FUESSV30 CÁ CÁCH ĐÂY 1 NĂM",
               heroMain: "+960.000 ₫",
               heroSub: "Dựa trên hiệu suất thực tế của Quỹ ETF SSIAM VN30 năm 2024.",
@@ -149,7 +241,7 @@ const MobileFrame = ({ activeTab }) => {
             },
             {
               type: 'home',
-              statusStrip: "Xác thực danh tính để bắt đầu đầu tư ngay · ~2 phút",
+              statusStrip: "Xác thực danh tính để bắt đầu đầu tư ngay",
               heroEyebrow: "NẾU ĐẦU TƯ 5 TRIỆU VÀO FUESSV30 CÁ CÁCH ĐÂY 1 NĂM",
               heroMain: "+960.000 ₫",
               heroSub: "Dựa trên hiệu suất thực tế của Quỹ ETF SSIAM VN30 năm 2024.",
@@ -162,9 +254,12 @@ const MobileFrame = ({ activeTab }) => {
               type: 'home',
               statusStrip: "Tài khoản đã xác thực. Nạp tiền để nhận ưu đãi đầu tư.",
               heroEyebrow: "SỨC MUA",
-              heroMain: "0 ₫",
+              heroMain: "100.000 ₫",
               heroSub: "Nạp tiền để bắt đầu những thương vụ đầu tiên",
               heroCTAs: ["Liên kết TK ngân hàng"],
+              showFact: true,
+              factLine: "Nếu đầu tư 5 triệu vào FUESSV30 cách đây 1 năm",
+              factNumber: "+960.000 ₫",
               actionsDisabled: false,
               portfolioHeading: "Gợi ý cho bạn",
               portfolioContent: { title: "Bắt đầu danh mục", sub: "Tìm hiểu các cổ phiếu tiềm năng", value: "---" }
@@ -173,9 +268,9 @@ const MobileFrame = ({ activeTab }) => {
               type: 'home',
               statusStrip: null,
               heroEyebrow: "SỨC MUA",
-              heroMain: "50.000.000 ₫",
+              heroMain: "50.100.000 ₫",
               heroSub: "Bạn có thể mua ~1.800 cổ phiếu HPG hoặc 400 cổ phiếu FPT",
-              heroCTAs: ["Đầu tư ngay", "Quản lý nạp/rút"],
+              heroCTAs: ["Đầu tư ngay"],
               actionsDisabled: false,
               portfolioHeading: "Gợi ý cho bạn",
               portfolioContent: { title: "Cổ phiếu đề xuất", sub: "Dựa trên khẩu vị rủi ro trung bình", value: "Top pick" }
@@ -185,9 +280,11 @@ const MobileFrame = ({ activeTab }) => {
               statusStrip: null,
               heroEyebrow: "TỔNG TÀI SẢN",
               heroMain: "124.500.000 ₫",
-              heroSub: "Tài sản của bạn tăng 2.1% (+2.6tr) trong hôm nay",
-              heroCTAs: ["Mua thêm", "Bán bớt"],
+              heroSub: null,
+              heroCTAs: [],
+              purchasingPower: "50.100.000 ₫",
               actionsDisabled: false,
+              showInvestingChart: true,
               portfolioHeading: "Danh mục của bạn",
               portfolioContent: { title: "Cổ phiếu & Quỹ", sub: "VIC, HPG, VNM, FUEVFVND...", value: "+8.4%" }
             }
@@ -403,31 +500,172 @@ const MobileFrame = ({ activeTab }) => {
 
               <div style={{ flex: 1, overflowY: 'auto' }}>
                 {/* Section 3: Hero Block */}
-                <div style={{ margin: '20px', background: 'white', borderRadius: '24px', padding: '32px 24px', border: '1px solid #f0f0f0', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', minHeight: '220px' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#888888', letterSpacing: '0.5px', marginBottom: '12px' }}>{data.heroEyebrow}</div>
-                  <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1a1a1a', marginBottom: '8px', letterSpacing: '-1px' }}>{data.heroMain}</div>
-                  <div style={{ fontSize: '0.9rem', color: '#555555', marginBottom: '24px', lineHeight: '1.4' }}>{data.heroSub}</div>
-                  <div style={{ marginTop: 'auto', display: 'flex', gap: '12px' }}>
-                    {data.heroCTAs.map((cta, i) => (
-                      <button
-                        key={cta}
-                        style={{
-                          flex: 1,
-                          background: i === (data.heroCTAs.length - 1) ? '#1a1a1a' : '#f5f5f5',
-                          color: i === (data.heroCTAs.length - 1) ? 'white' : '#1a1a1a',
-                          border: 'none',
-                          borderRadius: '12px',
-                          padding: '12px',
-                          fontWeight: 700,
-                          fontSize: '0.85rem',
-                          cursor: 'pointer'
-                        }}
+                <div style={{ 
+                  margin: '20px', 
+                  padding: (demoHomeState === 5 || demoHomeState === 6 || demoHomeState === 7 || demoHomeState === 8 || demoHomeState === 9) ? '12px 24px' : '32px 24px', 
+                  background: (demoHomeState === 5 || demoHomeState === 6 || demoHomeState === 7 || demoHomeState === 8 || demoHomeState === 9) ? 'transparent' : 'white', 
+                  borderRadius: '24px', 
+                  border: (demoHomeState === 5 || demoHomeState === 6 || demoHomeState === 7 || demoHomeState === 8 || demoHomeState === 9) ? 'none' : '1px solid #f0f0f0', 
+                  boxShadow: (demoHomeState === 5 || demoHomeState === 6 || demoHomeState === 7 || demoHomeState === 8 || demoHomeState === 9) ? 'none' : '0 8px 32px rgba(0,0,0,0.04)', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  minHeight: (demoHomeState === 5 || demoHomeState === 6 || demoHomeState === 7 || demoHomeState === 8 || demoHomeState === 9) ? 'auto' : '220px' 
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#888888', letterSpacing: '0.5px' }}>{data.heroEyebrow}</div>
+                    {(demoHomeState === 7 || demoHomeState === 8) && (
+                      <button 
+                        onClick={() => setShowPowerDetail(true)}
+                        style={{ background: 'none', border: 'none', color: '#1a1a1a', fontSize: '0.85rem', fontWeight: 600, padding: '4px 8px', cursor: 'pointer', textDecoration: 'underline' }}
                       >
-                        {cta}
+                        Chi tiết
                       </button>
-                    ))}
+                    )}
                   </div>
+                  
+                  {data.showInvestingChart && (
+                    <>
+                      <InvestingChart />
+                      <div style={{ height: '1.5px', background: '#16a34a', margin: '-12px 0 16px', opacity: 0.2, width: '100%' }}></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                        <div style={{ display: 'flex', gap: '24px' }}>
+                          {['1H', '1D', '1W', '1Y'].map(time => (
+                            <div key={time} style={{ fontSize: '0.75rem', fontWeight: 800, color: time === '1D' ? '#16a34a' : '#888888', cursor: 'pointer' }}>
+                              {time}
+                            </div>
+                          ))}
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '2px 6px', background: '#f0fdf4', borderRadius: '4px', border: '1px solid #dcfce7' }}>
+                          <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#16a34a' }}></div>
+                          <span style={{ fontSize: '0.65rem', fontWeight: 800, color: '#16a34a', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Live</span>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  
+                  {(demoHomeState === 5 || demoHomeState === 6) && (
+                    <div style={{ marginBottom: '12px', color: '#16a34a' }}>
+                      <TrendingUp size={32} />
+                    </div>
+                  )}
+                  <div style={{ fontSize: demoHomeState === 9 ? '1.8rem' : '2.5rem', fontWeight: 800, color: '#1a1a1a', marginBottom: '8px', letterSpacing: '-1px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                      {data.heroMain.includes(' ₫') ? (
+                        <>
+                          <span>{data.heroMain.replace(' ₫', '')}</span>
+                          <span style={{ fontSize: demoHomeState === 9 ? '0.9rem' : '1rem', marginTop: demoHomeState === 9 ? '6px' : '8px', marginLeft: '4px', fontWeight: 700 }}>₫</span>
+                        </>
+                      ) : data.heroMain}
+                    </div>
+                    {demoHomeState === 9 && (
+                      <div style={{ background: '#f0fdf4', color: '#16a34a', fontSize: '0.85rem', fontWeight: 800, padding: '4px 10px', borderRadius: '100px', border: '1px solid #dcfce7' }}>
+                        +12.4%
+                      </div>
+                    )}
+                  </div>
+                  {data.heroSub && <div style={{ fontSize: '0.9rem', color: '#555555', marginBottom: '24px', lineHeight: '1.4' }}>{data.heroSub}</div>}
+                  {data.heroCTAs && data.heroCTAs.length > 0 && (
+                    <div style={{ marginTop: 'auto', display: 'flex', gap: '12px' }}>
+                      {data.heroCTAs.map((cta, i) => (
+                        <button
+                          key={cta}
+                          onClick={() => {
+                            if (cta === "Xác thực để bắt đầu") {
+                              setDemoHomeState(6);
+                              setShowKYCPopup(true);
+                            }
+                          }}
+                          style={{
+                            flex: 1,
+                            background: i === (data.heroCTAs.length - 1) ? '#1a1a1a' : '#f5f5f5',
+                            color: i === (data.heroCTAs.length - 1) ? 'white' : '#1a1a1a',
+                            border: 'none',
+                            borderRadius: '12px',
+                            padding: '12px',
+                            fontWeight: 700,
+                            fontSize: '0.85rem',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {cta}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {demoHomeState === 9 && (
+                    <>
+                      <div style={{ height: '1px', background: '#e5e5e5', margin: '24px 0 20px', width: '100%' }}></div>
+                      <div 
+                        onClick={() => setShowPowerDetail(true)}
+                        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}
+                      >
+                        <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#555555' }}>Sức mua</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#1a1a1a' }}>{data.purchasingPower}</span>
+                          <ChevronRight size={18} color="#888888" />
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {data.showFact && (
+                    <>
+                      <div style={{ height: '1px', background: '#e5e5e5', margin: '24px 0 20px', width: '100%' }}></div>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#888888', marginBottom: '10px', lineHeight: '1.4' }}>{data.factLine}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#16a34a' }}>
+                        <TrendingUp size={20} />
+                        <div style={{ fontSize: '1.4rem', fontWeight: 800, letterSpacing: '-0.5px' }}>{data.factNumber}</div>
+                      </div>
+                    </>
+                  )}
                 </div>
+
+                {showPowerDetail && (
+                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 500 }}>
+                    <div 
+                      onClick={() => setShowPowerDetail(false)} 
+                      style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.4)', animation: 'fadeIn 0.2s' }}
+                    ></div>
+                    <div style={{ 
+                      position: 'absolute', 
+                      left: 0, 
+                      right: 0, 
+                      bottom: 0, 
+                      background: 'white', 
+                      borderTopLeftRadius: '24px', 
+                      borderTopRightRadius: '24px', 
+                      padding: '32px 24px 48px', 
+                      animation: 'slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)' 
+                    }}>
+                      <div style={{ width: '40px', height: '4px', background: '#e5e5e5', borderRadius: '2px', margin: '-16px auto 24px' }}></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1a1a1a' }}>Chi tiết sức mua</h3>
+                        <button onClick={() => setShowPowerDetail(false)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}><X size={24} color="#1a1a1a" /></button>
+                      </div>
+                      
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                        {[
+                          { label: 'Tiền mặt', value: '0 ₫' },
+                          { label: 'Hạn mức tín dụng', value: demoHomeState === 8 || demoHomeState === 9 ? '50.000.000 ₫' : '0 ₫' },
+                          { label: 'Điểm Nexus', value: '100.000 ₫', highlight: true }
+                        ].map((item, idx) => (
+                          <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: idx < 2 ? '16px' : '0', borderBottom: idx < 2 ? '1px solid #f5f5f5' : 'none' }}>
+                            <span style={{ fontSize: '0.95rem', color: '#555555', fontWeight: 500 }}>{item.label}</span>
+                            <span style={{ fontSize: '1.05rem', fontWeight: 700, color: item.highlight ? '#16a34a' : '#1a1a1a' }}>{item.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <button 
+                        onClick={() => setShowPowerDetail(false)}
+                        style={{ width: '100%', marginTop: '32px', padding: '18px', background: '#1a1a1a', color: 'white', border: 'none', borderRadius: '14px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer' }}
+                      >
+                        Đóng
+                      </button>
+                    </div>
+                  </div>
+                )}
 
                 {/* Section 4: Quick Actions Row */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 24px 24px' }}>
@@ -575,7 +813,7 @@ const MobileFrame = ({ activeTab }) => {
           <div style={{ position: 'absolute', top: '0', left: '0', display: 'flex', flexDirection: 'row', gap: '32px', height: '100%', zIndex: 10, paddingBottom: '24px' }}>
 
             {/* Column 1: Gallery */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '320px', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '320px', overflowY: 'auto' }}>
               <h3 style={{ fontSize: '13px', fontWeight: 700, color: '#333333', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>Thư viện thiết kế</h3>
               {Object.values(galleryApps).map(app => (
                 <div
@@ -585,7 +823,7 @@ const MobileFrame = ({ activeTab }) => {
                     background: selectedGalleryApp === app.id ? '#ffffff' : 'transparent',
                     border: selectedGalleryApp === app.id ? '1px solid #e5e5e5' : '1px solid transparent',
                     borderRadius: '16px',
-                    padding: '16px',
+                    padding: '12px',
                     cursor: 'pointer',
                     transition: 'all 0.2s',
                     boxShadow: selectedGalleryApp === app.id ? '0 4px 12px rgba(0,0,0,0.05)' : 'none'
@@ -593,7 +831,7 @@ const MobileFrame = ({ activeTab }) => {
                   onMouseOver={(e) => { if (selectedGalleryApp !== app.id) e.currentTarget.style.background = '#f5f5f5'; }}
                   onMouseOut={(e) => { if (selectedGalleryApp !== app.id) e.currentTarget.style.background = 'transparent'; }}
                 >
-                  <div style={{ display: 'flex', gap: '12px' }}>
+                  <div style={{ display: 'flex', gap: '8px' }}>
                     <img src={app.sections && app.sections[0] ? app.sections[0].images[0] : ''} alt={app.title} style={{ width: '60px', height: '120px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #f0f0f0' }} />
                     <div style={{ flex: 1 }}>
                       <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#1a1a1a', marginBottom: '4px' }}>{app.title}</h4>
@@ -609,7 +847,7 @@ const MobileFrame = ({ activeTab }) => {
 
             {/* Column 2: TOC */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '240px', overflowY: 'auto' }}>
-              <h3 style={{ fontSize: '11px', fontWeight: 700, color: '#333333', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Luồng tính năng</h3>
+              <h3 style={{ fontSize: '13px', fontWeight: 700, color: '#333333', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Luồng tính năng</h3>
               {selectedGalleryApp && galleryApps[selectedGalleryApp].sections && galleryApps[selectedGalleryApp].sections.map((section, idx) => (
                 <button
                   key={idx}
@@ -661,32 +899,28 @@ const MobileFrame = ({ activeTab }) => {
       <div className="mobile-frame-container" style={{ height: activeTab === 'design-style' ? '780px' : undefined }}>
         {activeTab === 'time-to-value' && (
           <div style={{ position: 'absolute', top: '0', left: '-320px', width: '280px', display: 'flex', flexDirection: 'column', gap: '8px', zIndex: 10 }}>
-            <h3 style={{ fontSize: '11px', fontWeight: 700, color: '#333333', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Luồng tính năng</h3>
+            <h3 style={{ fontSize: '13px', fontWeight: 700, color: '#333333', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>Luồng tính năng</h3>
             {[
-              "0. Giới thiệu",
-              "1. Nhập SĐT",
-              "2. Nhập OTP",
-              "3. Tạo mật khẩu",
-              "4. Chào mừng",
-              "5. Home: Chưa xác thực",
-              "6. eKYC",
-              "7. Home: chưa liên kết bank",
-              "8. Home: Đã nạp tiền",
-              "9. Home: Đang đầu tư"
-            ].map((stateName, idx) => (
+              { id: 0, label: "Giới thiệu" },
+              { id: 5, label: "Home: Chưa xác thực" },
+              { id: 6, label: "eKYC" },
+              { id: 7, label: "Home: Chưa liên kết bank" },
+              { id: 8, label: "Home: Đã liên kết bank" },
+              { id: 9, label: "Home: Đang đầu tư" }
+            ].map((item, idx) => (
               <button
                 key={idx}
                 onClick={() => {
-                  setDemoHomeState(idx);
-                  if (idx === 6) {
+                  setDemoHomeState(item.id);
+                  if (item.id === 6) {
                     setShowKYCPopup(true);
-                  } else if (idx === 5) {
+                  } else if (item.id === 5) {
                     setShowKYCPopup(false);
                   }
                 }}
-                className={`toc-btn ${demoHomeState === idx ? 'active' : ''}`}
+                className={`toc-btn ${demoHomeState === item.id ? 'active' : ''}`}
               >
-                {stateName}
+                {`${idx + 1}. ${item.label}`}
               </button>
             ))}
           </div>

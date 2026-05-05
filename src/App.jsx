@@ -4,15 +4,14 @@ import Sidebar from './components/Sidebar';
 import MobileFrame from './components/MobileFrame';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('time-to-value');
+  const [activeTab, setActiveTab] = useState('design-style');
   const [resetKey, setResetKey] = useState(0);
 
   const getHeaderTitle = () => {
     switch (activeTab) {
       case 'time-to-value':
         return 'Demo "Time to value flow"';
-      case 'interaction':
-        return 'Tương tác điển hình';
+
       case 'design-style':
         return 'Phong cách thiết kế';
       default:
@@ -23,13 +22,13 @@ function App() {
   return (
     <div className="app-container">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      
+
       <main className="main-content">
         <header className="header" style={{ justifyContent: 'space-between' }}>
           <h1 className="header-title">{getHeaderTitle()}</h1>
-          
+
           {activeTab !== 'design-style' && (
-            <button 
+            <button
               onClick={() => setResetKey(prev => prev + 1)}
               style={{
                 display: 'flex',
@@ -52,7 +51,7 @@ function App() {
             </button>
           )}
         </header>
-        
+
         <div className="content-area">
           <MobileFrame key={resetKey} activeTab={activeTab} />
         </div>

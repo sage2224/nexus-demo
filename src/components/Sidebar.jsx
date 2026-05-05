@@ -4,19 +4,14 @@ import { Layers, Zap, Smartphone, PlayCircle } from 'lucide-react';
 const Sidebar = ({ activeTab, setActiveTab }) => {
   const menuItems = [
     {
-      id: 'time-to-value',
-      label: 'Demo "Time to value flow"',
-      icon: <PlayCircle size={20} />
-    },
-    {
-      id: 'interaction',
-      label: 'Tương tác điển hình',
-      icon: <Zap size={20} />
-    },
-    {
       id: 'design-style',
       label: 'Phong cách thiết kế',
       icon: <Layers size={20} />
+    },
+    {
+      id: 'time-to-value',
+      label: 'Demo "Time to value flow"',
+      icon: <PlayCircle size={20} />
     }
   ];
 
